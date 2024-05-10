@@ -3,6 +3,7 @@
 # Import Dependencies
 import pathlib
 import time
+import ryankrabbe_utils
 
 def create_folders_for_range(start, end):
     """
@@ -52,20 +53,23 @@ def create_folders_periodically(duration):
 def main():
     ''' Main function to demonstrate module capabilities. '''
 
+    # Pring byline from imported module
+    print(f"byline:{ryankrabbe_utils}")
+
     # Call function 1 to create folders for a range (e.g. years)
-    create_folders_for_range(start_year=1995, end_year=2024)
+    create_folders_for_range(start=2020, end=2024)  # Updated function call
 
     # Call function 2 to create folders given a list
-    folder_names = ['data-csv', 'data-excel', 'data-json']
+    folder_names = ['West', 'Midwest', 'East']
     create_folders_from_list(folder_names)
 
     # Call function 3 to create folders using comprehension
-    folder_names = ['csv', 'excel', 'json']
-    prefix = 'data-'
+    folder_names = ['temperature', 'rainfall', 'wind']
+    prefix = 'weather-'
     create_prefixed_folders(folder_names, prefix)
 
     # Call function 4 to create folders periodically using while
-    duration_secs = 10  # duration in seconds
+    duration_secs = 1000  # duration in seconds
     create_folders_periodically(duration_secs)
 
     # Add options to force lowercase and remove spaces to function 2
@@ -80,5 +84,5 @@ def main():
     ]
     create_folders_from_list(states, to_lowercase=True, remove_spaces=True)
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()

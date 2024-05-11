@@ -9,33 +9,22 @@ def create_folders_for_range(start, end):
     """
     Create folders for a given range (e.g., years).
     """
-    folder_paths = []
-    for year in range(start, end + 1):
-        folder_name = str(year)
-        folder_path = pathlib.Path.cwd().joinpath(folder_name)
-        folder_path.mkdir(parents=True, exist_ok=True)
-        folder_paths.append(folder_path)
-    return folder_paths
+    for i in range(start, end + 1):
+        pathlib.Path(f"{i}").mkdir(exist_ok=True)
 
 def create_folders_from_list(folder_list):
     """
     Create folders from a list of names.
     """
-    folder_paths = []
-    for name in folder_list:
-        folder_path = pathlib.Path.cwd().joinpath(name)
-        folder_path.mkdir(parents=True, exist_ok=True)
-        folder_paths.append(folder_path)
-    return folder_paths
+    for folder in folder_list:
+        pathlib.Path(folder).mkdir(exist_ok=True)
 
 def create_prefixed_folders(folder_list, prefix):
     """
     Create prefixed folders by transforming a list of names and combining each with a prefix.
     """
-    folder_paths = [pathlib.Path.cwd().joinpath(f"{prefix}{name}") for name in folder_list]
-    for path in folder_paths:
-        path.mkdir(parents=True, exist_ok=True)
-    return folder_paths
+    for folder in folder_list:
+        pathlib.Path(f"{prefix}-{folder}").mkdir(exist_ok=True)
 
 def create_folders_periodically(duration):
     """
@@ -46,7 +35,7 @@ def create_folders_periodically(duration):
         folder_count += 1
         folder_name = f"Folder_{folder_count}"
         folder_path = pathlib.Path.cwd().joinpath(folder_name)
-        folder_path.mkdir(parents=True, exist_ok=True)
+        folder_path.mkdir(exist_ok=True)
         print(f"Created folder: {folder_path}")
         time.sleep(duration)
 
